@@ -1,0 +1,25 @@
+﻿@model ColorCreateViewModel
+
+
+<div class="row col-lg-12">
+    <div class="col-md-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Adding Color</h4>
+
+                <form class="forms-sample" method="post" asp-action="create" en>
+
+                    <div class="form-group">
+                        <label asp-for="Name">Color</label>
+                        <input asp-for="Name" class="form-control" placeholder="Please,Enter the Name of The Color">
+                        <span asp-validation-for="Name" class="text-danger"></span>
+
+                    </div>
+
+                    <button type="submit" class="btn btn-primary mr-2">Submit</button>
+                    <button class="btn btn-light" asp-action="index">Cancel</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
