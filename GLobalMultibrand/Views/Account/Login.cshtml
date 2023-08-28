@@ -1,0 +1,74 @@
+﻿@model LoginViewModel
+
+
+<div class="login-register-section section-padding-2">
+    <div class="container-fluid custom-container">
+        <div class="row">
+            <div class="col-md-12">
+                <!-- Log In & Register Box Start -->
+                <div class="login-register">
+                    <h3 class="login-register__title">Log In</h3>
+
+                    <form asp-action="login" method="post">
+                        <div asp-validation-summary="All" class="text-danger mb-2"></div>
+
+                        <div class="login-register__form">
+                            <!-- Single Form Start -->
+                            <div class="single-form">
+                                <input asp-for="Username" class="single-form__input"  placeholder="Username *" />
+                            </div>
+                            <!-- Single Form Start -->
+                            <!-- Single Form Start -->
+                            <div class="single-form">
+                                <input asp-for="Password" class="single-form__input" type="password" placeholder="Password *" />
+                            </div>
+                            <!-- Single Form Start -->
+                            <!-- Single Form Start -->
+                            <div class="single-form">
+                                <input class="single-form__input" asp-for="RememberMe"  />
+                                <label asp-for="RememberMe" class="single-form__label checkbox-label">
+                                    <span></span> Remember
+                                    me
+                                </label>
+                               @* <p class="lost-password">
+                                    <a href="#">Lost your password?</a>
+                                </p>*@
+                            </div>
+                            <!-- Single Form Start -->
+                            <!-- Single Form Start -->
+                            <div class="single-form">
+                                <button class="single-form__btn btn" type="submit">
+                                    Log In
+                                </button>
+                            </div>
+                            <!-- Single Form Start -->
+                        </div>
+                    </form>
+
+                    <ul class="login-register__social">
+                        <li>
+                            <a class="social-facebook" href="#">
+                                <span class="social-icon">
+                                    <img src="assets/images/facebook.svg"
+                                         alt="Facebook" />
+                                </span>
+                                <span class="social-text">Login with Facebook</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="social-google" href="#">
+                                <span class="social-icon">
+                                    <img src="assets/images/google.svg"
+                                         alt="Facebook" />
+                                </span>
+                                <span class="social-text">Login with Google</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- Log In & Register Box End -->
+            </div>
+
+        </div>
+    </div>
+</div>

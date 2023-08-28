@@ -1,0 +1,131 @@
+﻿@model ProductUpdateViewModel
+
+
+<div class="row col-lg-12">
+    <div class="col-md-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Editing Product</h4>
+
+                <form class="forms-sample" method="post" asp-action="update" enctype="multipart/form-data" en>
+
+                    <div class="form-group">
+                        <label asp-for="ProductName">Name</label>
+                        <input asp-for="ProductName" class="form-control" placeholder="Name">
+                        <span asp-validation-for="ProductName" class="text-danger"></span>
+
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="ProductFullDescription">Product Full Description</label>
+                        <input asp-for="ProductFullDescription" class="form-control" placeholder="Product Full Description">
+                        <span asp-validation-for="ProductFullDescription" class="text-danger"></span>
+
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="ProductShortDescription">Product Short Description</label>
+                        <input asp-for="ProductShortDescription" class="form-control" placeholder="Product Short Description">
+                        <span asp-validation-for="ProductShortDescription" class="text-danger"></span>
+
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Price">Price</label>
+                        <input asp-for="Price" class="form-control" placeholder="Price">
+                        <span asp-validation-for="Price" class="text-danger"></span>
+
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="DiscountPrice">Discount Price</label>
+                        <input asp-for="DiscountPrice" class="form-control" placeholder="Discount Price">
+                        <span asp-validation-for="DiscountPrice" class="text-danger"></span>
+
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="BrandId">Product Brands</label>
+                        <select asp-for="BrandId" asp-items="Model.Brands" class="form-control" placeholder="Please, Select Brand  of Product"></select>
+                        <span asp-validation-for="BrandId" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="ColorIds">Product Colors</label>
+                        <select asp-for="ColorIds" asp-items="Model.Colors" class="form-control" placeholder="Please, Select Color  of Product"></select>
+                        <span asp-validation-for="ColorIds" class="text-danger"></span>
+                    </div>
+                        <div class="form-group">
+                        <label asp-for="SizeIds">Product Sizes</label>
+                        <select asp-for="SizeIds" asp-items="Model.Sizes" class="form-control" placeholder="Please, Select Size  of Product"></select>
+                        <span asp-validation-for="SizeIds" class="text-danger"></span>
+                    </div>
+                    <div class="row">
+
+                        <!--/span-->
+                        <div class="col-md-4">
+                            <h4 class="box-title mt-20">Product Images</h4>
+                            <div class="product-img text-start">
+                                <input asp-for="RemovedImageIds" type="hidden" />
+
+                                <div class="input-group my-3">
+                                    <input asp-for="Images" class="form-control" accept="image/*">
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+
+                        <!--/span-->
+                        <div class="col-md-4">
+                            <h4 class="box-title mt-20">Product Image</h4>
+                            <div class="product-img text-start">
+                                <input asp-for="RemovedImageIds" type="hidden" />
+
+                                <div class="input-group my-3">
+                                    <input asp-for="Image" class="form-control" accept="image/*">
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="imagesTable">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+
+                                    <th>Image</th>
+                                    <th>Action</th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                                @foreach (var productImage in Model.ProductImages)
+                                {
+                                    <tr>
+
+                                        <td>
+                                            <img style="width:120px;height:120px;object-fit:contain;"  class="productImage" src="~/assets/images/product/@productImage.Name" />
+                                        </td>
+                                        <td>
+                                            <button type="button" class="btn btn-danger removeProductImage" data-id="@productImage.Id" ><i class="fa-solid fa-trash-can"></i></button>
+                                        </td>
+
+                                    </tr>
+                                }
+
+
+                            </tbody>
+                        </table>
+
+                    </div>
+                    <br />
+                    <br />
+                    <br />
+                    <hr />
+                   
+                    <button type="submit" class="btn btn-primary mr-2">Submit</button>
+                    <button class="btn btn-light" asp-action="index">Cancel</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

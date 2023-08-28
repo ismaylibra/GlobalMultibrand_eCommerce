@@ -22,9 +22,19 @@ namespace GLobalMultibrand.Controllers
                .OrderByDescending(s => s.Id)
                .ToListAsync();
 
+                 var products = await _dbContext.Products
+                //.Where(p => !p.IsDeleted)
+                .Include(p => p.ProductImages)
+                //.Include(p => p.CategoryProducts).ThenInclude(p => p.Category)
+                .Include(p => p.Brand)
+                .Take(6)
+                .OrderByDescending(p => p.Id)
+                .ToListAsync();
+
             var homeVM = new HomeViewModel
             {
-                Sliders = sliders
+                Sliders = sliders,
+                Products=products
             };
 
             return View(homeVM);

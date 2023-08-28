@@ -514,3 +514,4 @@ C:\Users\ASUS\Desktop\ASP.NET\GMB\GLobalMultibrand\obj\Debug\net6.0\refint\GLoba
 C:\Users\ASUS\Desktop\ASP.NET\GMB\GLobalMultibrand\obj\Debug\net6.0\GLobalMultibrand.pdb
 C:\Users\ASUS\Desktop\ASP.NET\GMB\GLobalMultibrand\obj\Debug\net6.0\GLobalMultibrand.genruntimeconfig.cache
 C:\Users\ASUS\Desktop\ASP.NET\GMB\GLobalMultibrand\obj\Debug\net6.0\ref\GLobalMultibrand.dll
+C:\Users\ASUS\Desktop\ASP.NET\GMB\GLobalMultibrand\obj\Debug\net6.0\GLobalMultibrand.MvcApplicationPartsAssemblyInfo.cs

@@ -1,4 +1,14 @@
-﻿<!DOCTYPE html>
+﻿@using GMB.Core.IdentityModels
+@using Microsoft.AspNetCore.Identity
+@inject UserManager<User> _userManager;
+
+@{
+    var user = await _userManager.FindByNameAsync(User.Identity.Name);
+    var fullname = $"{user.FirstName} {user.LastName}";
+
+}
+
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -98,7 +108,18 @@
                     <li class="nav-item nav-profile dropdown">
                         <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" id="profileDropdown">
                             <img src="~/admin/images/faces/face5.jpg" alt="profile" />
+
+                            @if(fullname is  null)
+                            {
                             <span class="nav-profile-name">@User.Identity.Name</span>
+
+
+                            }
+                            else
+                            {
+                                <span class="nav-profile-name">@fullname</span>
+
+                            }
                         </a>
                         <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
                             <a class="dropdown-item">
@@ -150,6 +171,7 @@
                         </a>
                         <div class="collapse" id="auth">
                             <ul class="nav flex-column sub-menu">
+                                <li class="nav-item"> <a class="nav-link" asp-controller="product" asp-action="index"> All Products </a></li>
                                 <li class="nav-item"> <a class="nav-link" asp-controller="brand" asp-action="index"> Brands </a></li>
                                 <li class="nav-item"> <a class="nav-link" asp-controller="size" asp-action="index"> Sizes </a></li>
                                 <li class="nav-item"> <a class="nav-link" asp-controller="color" asp-action="index"> Colors </a></li>
@@ -176,7 +198,7 @@
                             <span class="menu-title">Icons</span>
                         </a>
                     </li>
-                
+
                     <li class="nav-item">
                         <a class="nav-link" href="documentation/documentation.html">
                             <i class="mdi mdi-file-document-box-outline menu-icon"></i>

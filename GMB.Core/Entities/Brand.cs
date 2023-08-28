@@ -9,6 +9,7 @@ namespace GMB.Core.Entities
     public class Brand : Entity
     {
         public string Name { get; set; }
+        public List<Product> Products { get; set; }
 
     }
 }

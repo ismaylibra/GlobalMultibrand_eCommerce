@@ -1,9 +1,9 @@
-﻿using GMB.Business.ViewModels.Sliders;
+﻿using GMB.Business.Helpers;
+using GMB.Business.ViewModels.Sliders;
 using GMB.Core.Entities;
 using GMB.DAL.DAL;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Watch.BLL.Data;
 using Watch.BLL.Extensions;
 
 namespace GLobalMultibrand.Areas.Admin.Controllers

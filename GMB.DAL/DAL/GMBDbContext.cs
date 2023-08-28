@@ -1,4 +1,6 @@
 ﻿using GMB.Core.Entities;
+using GMB.Core.IdentityModels;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -8,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace GMB.DAL.DAL
 {
-    public class GMBDbContext : DbContext
+    public class GMBDbContext : IdentityDbContext<User>
     {
         public GMBDbContext(DbContextOptions options) : base(options)
         {
@@ -19,5 +21,9 @@ namespace GMB.DAL.DAL
         public DbSet<Brand> Brands { get; set; }
         public DbSet<Size> Sizes { get; set; }
         public DbSet<Color> Colors { get; set; }
+        public DbSet<ProductImage> ProductImages { get; set; }
+        public DbSet<ProductColor> ProductColors { get; set; }
+        public DbSet<ProductSize> ProductSizes { get; set; }
+
     }
 }

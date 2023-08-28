@@ -224,7 +224,7 @@
                                                 <div class="mt-auto">
                                                     <ul class="mega-menu__info">
                                                         <li><a href="#">info@exmple.com</a></li>
-                                                        <li><a href="#">(626)997-4298</a></li>
+                                                        <li><a href="#">+</a></li>
                                                     </ul>
                                                     <div class="mega-menu__social">
                                                         <div class="mega-menu__social--lable">Connect with us</div>
@@ -461,7 +461,7 @@
             <!-- Cart Buttons End-->
             <div class="cart-buttons">
                 <a href="#" class="cart-buttons__btn-1 btn">Checkout</a>
-                <a href="#" class="cart-buttons__btn-2 btn">View Cart</a>
+                <a asp-controller="basket" asp-action="index" class="cart-buttons__btn-2 btn">View Cart</a>
             </div>
             <!-- Cart Buttons End-->
         </div>
@@ -775,7 +775,7 @@
                                 <div class="mt-auto">
                                     <ul class="mega-menu__info">
                                         <li><a href="#">info@exmple.com</a></li>
-                                        <li><a href="#">(626)997-4298</a></li>
+                                        <li><a href="#">+994 99 722 9666</a></li>
                                     </ul>
                                     <div class="mega-menu__social">
                                         <div class="mega-menu__social--lable">
@@ -911,7 +911,7 @@
                                     <a href="mailto:info@example.com">info@example.com</a>
                                 </li>
                                 <li>
-                                    <a href="tel:626997-4298">(626)997-4298</a>
+                                    <a href="tel:626997-4298">+994 99 722 9666</a>
                                 </li>
                             </ul>
                         </div>
@@ -1066,6 +1066,7 @@
 
     <!-- JS Vendor, Plugins & Activation Script Files -->
     <!-- Bootstrap JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.2/jquery.min.js" integrity="sha512-tWHlutFnuG0C6nQRlpvrEhE4QpkG1nn2MOUMWmUeRePl4e3Aki0VB6W1v3oLjFtd0hVOtRQ9PHpSfN6u6/QXkQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="~/assets/js/bootstrap.bundle.min.js"></script>
 
     <!-- Plugins JS -->
@@ -1074,9 +1075,12 @@
     <script src="~/assets/js/glightbox.min.js"></script>
     <script src="~/assets/js/nice-select2.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/js/all.min.js" integrity="sha512-uKQ39gEGiyUJl4AI6L+ekBdGKpGw4xJ55+xyJG7YFlJokPNYegn9KwQ3P8A7aFQAUtUsAQHep+d/lrGqrbPIDQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-
+    //hardadi? jquery o yoxdu deyesen
     <!-- Activation JS -->
+    <script src="~/assets/js/basket.js"></script>
+
     <script src="~/assets/js/main.js"></script>
+    @await RenderSectionAsync("Scripts", false)
 
 </body>
 

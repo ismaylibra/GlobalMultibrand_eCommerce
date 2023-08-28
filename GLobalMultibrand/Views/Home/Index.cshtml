@@ -1,6 +1,7 @@
 ﻿@model HomeViewModel
 @{
     var sliders = Model.Sliders;
+    var products = Model.Products;
 
 
     
@@ -252,6 +253,9 @@
                         <!-- New Arrival Wrapper Start -->
                         <div class="new-arrival-wrapper-2">
                             <div class="row g-3">
+                                @foreach (var product in products)
+                                {
+                                    
                                 <div class="col-lg-3 col-md-4">
                                     <!-- Single product Start -->
                                     <div class="single-product js-scroll ShortFadeInUp">
@@ -263,13 +267,11 @@
                                             </div>
                                             <div class="single-product__thumbnail--holder">
                                                 <a href="product-single.html">
-                                                    <img src="~/assets/images/products/product-46.jpg" alt="Product" />
+                                                    <img src="~/assets/images/product/@product.ImageUrl" alt="Product" />
                                                 </a>
                                             </div>
                                             <div class="single-product__thumbnail--meta-2">
-                                                <a href="#" data-bs-tooltip="tooltip" data-bs-placement="top" data-bs-title="Add to cart" data-bs-custom-class="p-meta-tooltip"><i
-                                                            class="lastudioicon-shopping-cart-3"
-                                                        ></i></a>
+                                                <button class="add-product-to-cart" ><i class="lastudioicon-shopping-cart-3" data-id="@product.Id"></i></button>
                                                 <a href="#" data-bs-tooltip="tooltip" data-bs-placement="top" data-bs-title="Add to compare" data-bs-custom-class="p-meta-tooltip"><i
                                                             class="lastudioicon-ic_compare_arrows_24px"
                                                         ></i></a>
@@ -285,315 +287,17 @@
                                                 <a href="product-single.html">Fashion</a>
                                             </div>
                                             <h3 class="single-product__info--title">
-                                                <a href="#">Blazer with patch
-                                                    pockets</a>
+                                                <a href="#">@product.ProductName</a>
                                             </h3>
                                             <div class="single-product__info--price">
-                                                <ins>$39.99</ins>
+                                                <ins>$@product.Price</ins>
                                             </div>
                                         </div>
                                     </div>
                                     <!-- Single product End -->
                                 </div>
-                                <div class="col-lg-3 col-md-4">
-                                    <!-- Single product Start -->
-                                    <div class="single-product js-scroll ShortFadeInUp">
-                                        <div class="single-product__thumbnail">
-                                            <div class="single-product__thumbnail--meta-3">
-                                                <a href="#" data-bs-tooltip="tooltip" data-bs-placement="top" data-bs-title="Add to wishlist" data-bs-custom-class="p-meta-tooltip"><i
-                                                            class="lastudioicon-heart-2"
-                                                        ></i></a>
-                                            </div>
-                                            <div class="single-product__thumbnail--holder">
-                                                <a href="product-single.html">
-                                                    <img src="~/assets/images/products/product-45.jpg" alt="Product" />
-                                                </a>
-                                            </div>
-                                            <div class="single-product__thumbnail--meta-2">
-                                                <a href="#" data-bs-tooltip="tooltip" data-bs-placement="top" data-bs-title="Add to cart" data-bs-custom-class="p-meta-tooltip"><i
-                                                            class="lastudioicon-shopping-cart-3"
-                                                        ></i></a>
-                                                <a href="#" data-bs-tooltip="tooltip" data-bs-placement="top" data-bs-title="Add to compare" data-bs-custom-class="p-meta-tooltip"><i
-                                                            class="lastudioicon-ic_compare_arrows_24px"
-                                                        ></i></a>
-                                                <button data-bs-tooltip="tooltip" data-bs-placement="top" data-bs-title="Quickview" data-bs-custom-class="p-meta-tooltip" data-bs-toggle="modal" data-bs-target="#quickView">
-                                                    <i
-                                                            class="lastudioicon-search-zoom-in"
-                                                        ></i>
-                                                </button>
-                                            </div>
-                                        </div>
-                                        <div class="single-product__info text-center">
-                                            <div class="single-product__info--tags">
-                                                <a href="product-single.html">Coat</a>
-                                            </div>
-                                            <h3 class="single-product__info--title">
-                                                <a href="#">Floral jacquard halter
-                                                    top</a>
-                                            </h3>
-                                            <div class="single-product__info--price">
-                                                <ins>$35.99</ins>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- Single product End -->
-                                </div>
-                                <div class="col-lg-3 col-md-4">
-                                    <!-- Single product Start -->
-                                    <div class="single-product js-scroll ShortFadeInUp">
-                                        <div class="single-product__thumbnail">
-                                            <div class="single-product__thumbnail--meta-3">
-                                                <a href="#" data-bs-tooltip="tooltip" data-bs-placement="top" data-bs-title="Add to wishlist" data-bs-custom-class="p-meta-tooltip"><i
-                                                            class="lastudioicon-heart-2"
-                                                        ></i></a>
-                                            </div>
-                                            <div class="single-product__thumbnail--holder">
-                                                <a href="product-single.html">
-                                                    <img src="~/assets/images/products/product-44.jpg" alt="Product" />
-                                                </a>
-                                            </div>
-                                            <div class="single-product__thumbnail--meta-2">
-                                                <a href="#" data-bs-tooltip="tooltip" data-bs-placement="top" data-bs-title="Add to cart" data-bs-custom-class="p-meta-tooltip"><i
-                                                            class="lastudioicon-shopping-cart-3"
-                                                        ></i></a>
-                                                <a href="#" data-bs-tooltip="tooltip" data-bs-placement="top" data-bs-title="Add to compare" data-bs-custom-class="p-meta-tooltip"><i
-                                                            class="lastudioicon-ic_compare_arrows_24px"
-                                                        ></i></a>
-                                                <button data-bs-tooltip="tooltip" data-bs-placement="top" data-bs-title="Quickview" data-bs-custom-class="p-meta-tooltip" data-bs-toggle="modal" data-bs-target="#quickView">
-                                                    <i
-                                                            class="lastudioicon-search-zoom-in"
-                                                        ></i>
-                                                </button>
-                                            </div>
-                                        </div>
-                                        <div class="single-product__info text-center">
-                                            <div class="single-product__info--tags">
-                                                <a href="product-single.html">Coat</a>
-                                            </div>
-                                            <h3 class="single-product__info--title">
-                                                <a href="#">Basic bomber jacket</a>
-                                            </h3>
-                                            <div class="single-product__info--price">
-                                                <ins>$89.99</ins>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- Single product End -->
-                                </div>
-                                <div class="col-lg-3 col-md-4">
-                                    <!-- Single product Start -->
-                                    <div class="single-product js-scroll ShortFadeInUp">
-                                        <div class="single-product__thumbnail">
-                                            <div class="single-product__thumbnail--meta-3">
-                                                <a href="#" data-bs-tooltip="tooltip" data-bs-placement="top" data-bs-title="Add to wishlist" data-bs-custom-class="p-meta-tooltip"><i
-                                                            class="lastudioicon-heart-2"
-                                                        ></i></a>
-                                            </div>
-                                            <div class="single-product__thumbnail--holder">
-                                                <a href="product-single.html">
-                                                    <img src="~/assets/images/products/product-43.jpg" alt="Product" />
-                                                </a>
-                                            </div>
-                                            <div class="single-product__thumbnail--meta-2">
-                                                <a href="#" data-bs-tooltip="tooltip" data-bs-placement="top" data-bs-title="Add to cart" data-bs-custom-class="p-meta-tooltip"><i
-                                                            class="lastudioicon-shopping-cart-3"
-                                                        ></i></a>
-                                                <a href="#" data-bs-tooltip="tooltip" data-bs-placement="top" data-bs-title="Add to compare" data-bs-custom-class="p-meta-tooltip"><i
-                                                            class="lastudioicon-ic_compare_arrows_24px"
-                                                        ></i></a>
-                                                <button data-bs-tooltip="tooltip" data-bs-placement="top" data-bs-title="Quickview" data-bs-custom-class="p-meta-tooltip" data-bs-toggle="modal" data-bs-target="#quickView">
-                                                    <i
-                                                            class="lastudioicon-search-zoom-in"
-                                                        ></i>
-                                                </button>
-                                            </div>
-                                        </div>
-                                        <div class="single-product__info text-center">
-                                            <div class="single-product__info--tags">
-                                                <a href="product-single.html">Coat</a>
-                                            </div>
-                                            <h3 class="single-product__info--title">
-                                                <a href="#">Gathered satin
-                                                    blazer</a>
-                                            </h3>
-                                            <div class="single-product__info--price">
-                                                <ins>$49.99</ins>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- Single product End -->
-                                </div>
-                                <div class="col-lg-3 col-md-4">
-                                    <!-- Single product Start -->
-                                    <div class="single-product js-scroll ShortFadeInUp">
-                                        <div class="single-product__thumbnail">
-                                            <div class="single-product__thumbnail--meta-3">
-                                                <a href="#" data-bs-tooltip="tooltip" data-bs-placement="top" data-bs-title="Add to wishlist" data-bs-custom-class="p-meta-tooltip"><i
-                                                            class="lastudioicon-heart-2"
-                                                        ></i></a>
-                                            </div>
-                                            <div class="single-product__thumbnail--holder">
-                                                <a href="product-single.html">
-                                                    <img src="~/assets/images/products/product-42.jpg" alt="Product" />
-                                                </a>
-                                            </div>
-                                            <div class="single-product__thumbnail--meta-2">
-                                                <a href="#" data-bs-tooltip="tooltip" data-bs-placement="top" data-bs-title="Add to cart" data-bs-custom-class="p-meta-tooltip"><i
-                                                            class="lastudioicon-shopping-cart-3"
-                                                        ></i></a>
-                                                <a href="#" data-bs-tooltip="tooltip" data-bs-placement="top" data-bs-title="Add to compare" data-bs-custom-class="p-meta-tooltip"><i
-                                                            class="lastudioicon-ic_compare_arrows_24px"
-                                                        ></i></a>
-                                                <button data-bs-tooltip="tooltip" data-bs-placement="top" data-bs-title="Quickview" data-bs-custom-class="p-meta-tooltip" data-bs-toggle="modal" data-bs-target="#quickView">
-                                                    <i
-                                                            class="lastudioicon-search-zoom-in"
-                                                        ></i>
-                                                </button>
-                                            </div>
-                                        </div>
-                                        <div class="single-product__info text-center">
-                                            <div class="single-product__info--tags">
-                                                <a href="product-single.html">Coat</a>
-                                            </div>
-                                            <h3 class="single-product__info--title">
-                                                <a href="#">Floral crop top</a>
-                                            </h3>
-                                            <div class="single-product__info--price">
-                                                <ins>$49.99</ins>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- Single product End -->
-                                </div>
-                                <div class="col-lg-3 col-md-4">
-                                    <!-- Single product Start -->
-                                    <div class="single-product js-scroll ShortFadeInUp">
-                                        <div class="single-product__thumbnail">
-                                            <div class="single-product__thumbnail--meta-3">
-                                                <a href="#" data-bs-tooltip="tooltip" data-bs-placement="top" data-bs-title="Add to wishlist" data-bs-custom-class="p-meta-tooltip"><i
-                                                            class="lastudioicon-heart-2"
-                                                        ></i></a>
-                                            </div>
-                                            <div class="single-product__thumbnail--holder">
-                                                <a href="product-single.html">
-                                                    <img src="~/assets/images/products/product-41.jpg" alt="Product" />
-                                                </a>
-                                            </div>
-                                            <div class="single-product__thumbnail--meta-2">
-                                                <a href="#" data-bs-tooltip="tooltip" data-bs-placement="top" data-bs-title="Add to cart" data-bs-custom-class="p-meta-tooltip"><i
-                                                            class="lastudioicon-shopping-cart-3"
-                                                        ></i></a>
-                                                <a href="#" data-bs-tooltip="tooltip" data-bs-placement="top" data-bs-title="Add to compare" data-bs-custom-class="p-meta-tooltip"><i
-                                                            class="lastudioicon-ic_compare_arrows_24px"
-                                                        ></i></a>
-                                                <button data-bs-tooltip="tooltip" data-bs-placement="top" data-bs-title="Quickview" data-bs-custom-class="p-meta-tooltip" data-bs-toggle="modal" data-bs-target="#quickView">
-                                                    <i
-                                                            class="lastudioicon-search-zoom-in"
-                                                        ></i>
-                                                </button>
-                                            </div>
-                                        </div>
-                                        <div class="single-product__info text-center">
-                                            <div class="single-product__info--tags">
-                                                <a href="product-single.html">Fashion</a>
-                                            </div>
-                                            <h3 class="single-product__info--title">
-                                                <a href="#">Lapelless fitted
-                                                    blazer</a>
-                                            </h3>
-                                            <div class="single-product__info--price">
-                                                <ins>$55.99</ins>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- Single product End -->
-                                </div>
-                                <div class="col-lg-3 col-md-4">
-                                    <!-- Single product Start -->
-                                    <div class="single-product js-scroll ShortFadeInUp">
-                                        <div class="single-product__thumbnail">
-                                            <div class="single-product__thumbnail--meta-3">
-                                                <a href="#" data-bs-tooltip="tooltip" data-bs-placement="top" data-bs-title="Add to wishlist" data-bs-custom-class="p-meta-tooltip"><i
-                                                            class="lastudioicon-heart-2"
-                                                        ></i></a>
-                                            </div>
-                                            <div class="single-product__thumbnail--holder">
-                                                <a href="product-single.html">
-                                                    <img src="~/assets/images/products/product-40.jpg" alt="Product" />
-                                                </a>
-                                            </div>
-                                            <div class="single-product__thumbnail--meta-2">
-                                                <a href="#" data-bs-tooltip="tooltip" data-bs-placement="top" data-bs-title="Add to cart" data-bs-custom-class="p-meta-tooltip"><i
-                                                            class="lastudioicon-shopping-cart-3"
-                                                        ></i></a>
-                                                <a href="#" data-bs-tooltip="tooltip" data-bs-placement="top" data-bs-title="Add to compare" data-bs-custom-class="p-meta-tooltip"><i
-                                                            class="lastudioicon-ic_compare_arrows_24px"
-                                                        ></i></a>
-                                                <button data-bs-tooltip="tooltip" data-bs-placement="top" data-bs-title="Quickview" data-bs-custom-class="p-meta-tooltip" data-bs-toggle="modal" data-bs-target="#quickView">
-                                                    <i
-                                                            class="lastudioicon-search-zoom-in"
-                                                        ></i>
-                                                </button>
-                                            </div>
-                                        </div>
-                                        <div class="single-product__info text-center">
-                                            <div class="single-product__info--tags">
-                                                <a href="product-single.html">Coat</a>
-                                            </div>
-                                            <h3 class="single-product__info--title">
-                                                <a href="#">Long collared
-                                                    waistcoat</a>
-                                            </h3>
-                                            <div class="single-product__info--price">
-                                                <ins>$39.99</ins>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- Single product End -->
-                                </div>
-                                <div class="col-lg-3 col-md-4">
-                                    <!-- Single product Start -->
-                                    <div class="single-product js-scroll ShortFadeInUp">
-                                        <div class="single-product__thumbnail">
-                                            <div class="single-product__thumbnail--meta-3">
-                                                <a href="#" data-bs-tooltip="tooltip" data-bs-placement="top" data-bs-title="Add to wishlist" data-bs-custom-class="p-meta-tooltip"><i
-                                                            class="lastudioicon-heart-2"
-                                                        ></i></a>
-                                            </div>
-                                            <div class="single-product__thumbnail--holder">
-                                                <a href="product-single.html">
-                                                    <img src="~/assets/images/products/product-39.jpg" alt="Product" />
-                                                </a>
-                                            </div>
-                                            <div class="single-product__thumbnail--meta-2">
-                                                <a href="#" data-bs-tooltip="tooltip" data-bs-placement="top" data-bs-title="Add to cart" data-bs-custom-class="p-meta-tooltip"><i
-                                                            class="lastudioicon-shopping-cart-3"
-                                                        ></i></a>
-                                                <a href="#" data-bs-tooltip="tooltip" data-bs-placement="top" data-bs-title="Add to compare" data-bs-custom-class="p-meta-tooltip"><i
-                                                            class="lastudioicon-ic_compare_arrows_24px"
-                                                        ></i></a>
-                                                <button data-bs-tooltip="tooltip" data-bs-placement="top" data-bs-title="Quickview" data-bs-custom-class="p-meta-tooltip" data-bs-toggle="modal" data-bs-target="#quickView">
-                                                    <i
-                                                            class="lastudioicon-search-zoom-in"
-                                                        ></i>
-                                                </button>
-                                            </div>
-                                        </div>
-                                        <div class="single-product__info text-center">
-                                            <div class="single-product__info--tags">
-                                                <a href="product-single.html">Coat</a>
-                                            </div>
-                                            <h3 class="single-product__info--title">
-                                                <a href="#">Lapelless fitted
-                                                    blazer</a>
-                                            </h3>
-                                            <div class="single-product__info--price">
-                                                <ins>$89.99</ins>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- Single product End -->
-                                </div>
+                                }
+                              
                             </div>
                         </div>
                         <!-- New Arrival Wrapper End -->

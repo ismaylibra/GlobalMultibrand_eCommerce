@@ -1,0 +1,290 @@
+﻿@model List<BasketItemViewModel>
+@{
+    var basket = Model;
+
+     decimal totalPrice = 0;
+    foreach (var product in basket)
+    {
+       totalPrice += product.Price * product.Count;
+
+    }
+}
+<main>
+    <!-- Breadcrumb Start -->
+    <div class="breadcrumb-section">
+        <div class="container-fluid custom-container">
+            <div class="breadcrumb-wrapper text-center">
+                <h2 class="breadcrumb-wrapper__title">Cart</h2>
+                <ul class="breadcrumb-wrapper__items justify-content-center">
+                    <li><a href="index.html">Home</a></li>
+                    <li><span>Cart</span></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- Breadcrumb End -->
+    <!-- Cart Start -->
+    <div class="cart-section section-padding-2">
+        <div class="container-fluid custom-container">
+            <!-- Cart Wrapper Start-->
+            <div class="cart-wrapper">
+                <!-- Cart Form Start-->
+                <div class="cart-form">
+                    <!-- Free Shipping Goal Start-->
+                    <div class="free-shipping-goal">
+                        <div class="free-shipping-goal__label text-center">
+                            Buy $3.03 more to enjoy
+                            <strong>FREE Shipping</strong>
+                        </div>
+                        <div class="free-shipping-goal__loading-bar">
+                            <div class="load-percent" style="width: 98.49%"></div>
+                        </div>
+                    </div>
+                    <!-- Free Shipping Goal Start-->
+                    <!-- Cart Table Start-->
+                    <div class="cart-table table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th class="cart-product-remove">
+                                        &nbsp;
+                                    </th>
+                                    <th class="cart-product-thumbnail">
+                                        &nbsp;
+                                    </th>
+                                    <th class="cart-product-name">
+                                        Product
+                                    </th>
+                                    <th class="cart-product-price text-center">
+                                        Price
+                                    </th>
+                                    <th class="cart-product-quantity text-center">
+                                        Quantity
+                                    </th>
+                                    <th class="cart-product-subtotal text-center">
+                                        Subtotal
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                                @foreach (var item in basket)
+                                {
+                                    <tr class="cart-item" id=@(item.Id+"tbody")>
+                                        <td class="cart-product-remove">
+                                             <input type="hidden" value="@item.Id" />
+                                            <a >
+                                                <i id="remove-from-cart" class="fa-solid fa-trash-can"></i>
+
+                                                </a>
+                                        </td>
+
+                                        <td class="cart-product-thumbnail">
+                                            <a href="product-single.html">
+                                                <img src="~/assets/images/product/@item.ImageUrl" alt="Product" width="70" height="89" />
+                                            </a>
+                                        </td>
+
+                                        <td class="cart-product-name">
+                                            <a href="product-single.html">
+                                                @item.ProductName
+                                            </a>
+                                        </td>
+
+                                        <td class="cart-product-price text-md-center" data-title="Price">
+                                            <span class="price-amount">
+                                                <ins>$@item.Price</ins>
+                                            </span>
+                                        </td>
+
+                                        <td class="cart-product-quantity text-md-center" data-title="Quantity">
+                                            <div class="cart-table__quantity product-quantity">
+                                                <button type="button" class="decrease" aria-label="delete">
+                                                    <i class="lastudioicon-i-delete-2"></i>
+                                                </button>
+                                                <input id="product-quality" class="quantity-input" type="text" value="@item.Count" aria-label="quantity" />
+                                                <button type="button" class="increase" aria-label="add">
+                                                    <i class="lastudioicon-i-add-2"></i>
+                                                </button>
+                                            </div>
+                                        </td>
+
+                                        <td id=@("product-total-price" + item.Id) class="product_total">£@(item.Price * item.Count)</td>
+                                    </tr>
+                                }    
+                               
+                                
+
+                                <tr class="">
+                                    <td colspan="6" class="actions">
+                                        <div class="cart-coupon">
+                                            <input class="cart-coupon__input" type="text" placeholder="Coupon code" />
+                                            <button class="cart-coupon__btn" type="submit">
+                                                Apply coupon
+                                            </button>
+                                        </div>
+
+                                        <button class="cart-update-btn" type="submit">
+                                            Update cart
+                                        </button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- Cart Table Start-->
+                </div>
+                <!-- Cart Form End-->
+                <!-- Cart Collaterals Start-->
+                <div class="cart-collaterals">
+                    <!-- Cart Totals Start-->
+                    <div class="cart-totals">
+                        <h3 class="cart-totals__title">Cart totals</h3>
+
+                        <div class="cart-totals__table table-responsive">
+                            <table class="table">
+                                <tbody>
+                                    <tr>
+                                        <th>Subtotal</th>
+                                        <td>
+                                            <span>$ @totalPrice</span>
+                                        </td>
+                                    </tr>
+
+
+                                    <tr class="order-total">
+                                        <th>Total</th>
+                                        <td>
+                                            <strong>$@totalPrice</strong>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div class="cart-totals__checkout">
+                            <a href="#">Proceed to checkout</a>
+                        </div>
+                    </div>
+                    <!-- Cart Totals End-->
+                </div>
+                <!-- Cart Collaterals End-->
+            </div>
+            <!-- Cart Wrapper End -->
+        </div>
+    </div>
+    <!-- Cart End -->
+    <!-- Newsletter Start -->
+    <div class="newsletter-section-2 newsletter-section-4">
+        <div class="newsletter-left" style="
+                        background-image: url(assets/images/newsletter-bg-1.jpg);
+                    ">
+            <!-- Newsletter Wrapper Start -->
+            <div class="newsletter-wrapper-3 text-center">
+                <h4 class="newsletter-wrapper-3__title">
+                    Follow us on
+                </h4>
+                <p>
+                    Proin volutpat vitae libero at tincidunt. Maecenas
+                    sapien lectus, vehicula vel euismod sed, vulputate
+                </p>
+
+                <div class="newsletter-social">
+                    <ul class="newsletter-social__list">
+                        <li>
+                            <a href="#" aria-label="facebook">
+                                <i class="lastudioicon-b-facebook"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" aria-label="twitter">
+                                <i class="lastudioicon-b-twitter"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" aria-label="instagram">
+                                <i class="lastudioicon-b-instagram"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" aria-label="vimeo">
+                                <i class="lastudioicon-b-vimeo"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" aria-label="envato">
+                                <i class="lastudioicon-envato"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <!-- Newsletter Wrapper End -->
+        </div>
+        <div class="newsletter-right" style="
+                        background-image: url(assets/images/newsletter-bg-2.jpg);
+                    ">
+            <!-- Newsletter Wrapper Start -->
+            <div class="newsletter-wrapper-3 text-center">
+                <h4 class="newsletter-wrapper-3__title">
+                    10% off when you sign up
+                </h4>
+                <p>
+                    Proin volutpat vitae libero at tincidunt. Maecenas
+                    sapien lectus, vehicula vel euismod sed, vulputate
+                </p>
+                <form action="#">
+                    <div class="newsletter-form-style-1 newsletter-form-style-1--2">
+                        <input type="text" placeholder="Enter your email address..." />
+                        <button type="submit">Subscribe</button>
+                    </div>
+                </form>
+            </div>
+            <!-- Newsletter Wrapper End -->
+        </div>
+    </div>
+    <!-- Newsletter End -->
+</main>
+
+@section Scripts{
+    <script>
+
+        $(document).on('click', '#remove-from-cart', function () {
+            var productId = $(this).parent().parent().parent().children().children().val();
+            console.log(productId)
+
+            $.ajax({
+                type: "POST",
+                url: "/Basket/DeleteProductBasket",
+                data: { productId: productId },
+                success: function () {
+                    $("#" + productId + "tbody").remove();
+                },
+                Error: function () {
+                    alert("Somthing Wrong");
+                }
+            });
+        });
+
+        $(document).on('change', '#product-quality', function () {
+            var productId = $(this).parent().parent().ch    ildren().children().val();
+            var count = $(this).val();
+            var price = $("#product_price").attr("data-id");
+            var totalPrice = price * count;
+
+            $.ajax({
+                type: "POST",
+                url: "/Basket/ChangeProductQuality",
+                data: { productId: productId, count: count },
+                success: function () {
+                    $("#" + "product-total-price" + productId).html(totalPrice);
+                },
+                Error: function () {
+                    alert("Somthing Wrong");
+                }
+            });
+
+
+        });
+    </script>
+}
