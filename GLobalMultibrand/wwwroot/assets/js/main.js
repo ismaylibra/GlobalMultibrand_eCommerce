@@ -1086,33 +1086,8 @@ const productVariable = (selector) => {
 
 productVariable(".product-variable")
 
-/*--
-    Product Quantity
------------------------------------*/
 
-const productQuantity = (selector) => {
-    const quantity = document.querySelector(selector)
 
-    if (quantity) {
-        const quantityIncrease = quantity.querySelector(".increase")
-        const quantityDecrease = quantity.querySelector(".decrease")
-        const quantityInput = quantity.querySelector(".quantity-input")
-        let count = 1
-
-        quantityIncrease.addEventListener("click", () => {
-            count++
-            quantityInput.value = count
-        })
-        quantityDecrease.addEventListener("click", () => {
-            if (count > 0) {
-                count--
-                quantityInput.value = count
-            }
-        })
-    }
-}
-
-productQuantity(".product-quantity")
 
 /*--
     Related Product

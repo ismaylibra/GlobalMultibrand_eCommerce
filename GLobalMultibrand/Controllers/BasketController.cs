@@ -20,6 +20,11 @@ namespace GLobalMultibrand.Controllers
         {
             var basketItems = Request.Cookies["basket"];
 
+            if (string.IsNullOrEmpty(basketItems))
+            {
+                return View(new List<BasketItemViewModel>());
+            }
+
             return View(JsonConvert.DeserializeObject<List<BasketItemViewModel>>(basketItems));
         }
 
@@ -79,22 +84,34 @@ namespace GLobalMultibrand.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> ChangeProductQuality(int? productId, int count)
+        public async Task<IActionResult> UpdateBasketQuantity(int? productId, int updatedQuantity)
         {
-
-            if (Request.Cookies.TryGetValue(Constants.BASKET_COOKIE_NAME, out var cookie))
+            if (productId == null || updatedQuantity < 0)
             {
-                var productList = JsonConvert.DeserializeObject<List<BasketItemViewModel>>(cookie);
-
-                var existProduct = productList.Where(x => x.Id == productId).FirstOrDefault();
-
-                existProduct.Count = count;
-
-                var productIdListJson = JsonConvert.SerializeObject(productList);
-
-                Response.Cookies.Append(Constants.BASKET_COOKIE_NAME, productIdListJson);
+                return BadRequest("Invalid arguments");
             }
-            return NoContent();
+
+            var basket = Request.Cookies["basket"];
+            if (basket is null)
+            {
+                return NotFound("Basket cookie not found");
+            }
+
+            var basketItems = JsonConvert.DeserializeObject<List<BasketItemViewModel>>(basket);
+            var productToUpdate = basketItems.Where(x => x.Id == productId).FirstOrDefault();
+
+            if (productToUpdate == null)
+            {
+                return NotFound("Product not found in basket");
+            }
+
+
+            productToUpdate.Count = updatedQuantity;
+
+
+            Response.Cookies.Append("basket", JsonConvert.SerializeObject(basketItems));
+
+            return Ok();
         }
 
 

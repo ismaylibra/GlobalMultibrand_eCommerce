@@ -2,13 +2,19 @@
 @{
     var basket = Model;
 
-     decimal totalPrice = 0;
+    decimal totalPrice = 0;
     foreach (var product in basket)
     {
-       totalPrice += product.Price * product.Count;
+        totalPrice += product.Price * product.Count;
 
     }
 }
+<style>
+    #Alert, .cart-wrapper {
+        display: none;
+    }
+</style>
+
 <main>
     <!-- Breadcrumb Start -->
     <div class="breadcrumb-section">
@@ -72,11 +78,11 @@
                                 {
                                     <tr class="cart-item" id=@(item.Id+"tbody")>
                                         <td class="cart-product-remove">
-                                             <input type="hidden" value="@item.Id" />
-                                            <a >
+                                            <input type="hidden" value="@item.Id" />
+                                            <a>
                                                 <i id="remove-from-cart" class="fa-solid fa-trash-can"></i>
 
-                                                </a>
+                                            </a>
                                         </td>
 
                                         <td class="cart-product-thumbnail">
@@ -99,21 +105,22 @@
 
                                         <td class="cart-product-quantity text-md-center" data-title="Quantity">
                                             <div class="cart-table__quantity product-quantity">
-                                                <button type="button" class="decrease" aria-label="delete">
+                                                <button class="decrease" data-product-id="@item.Id" aria-label="delete">
                                                     <i class="lastudioicon-i-delete-2"></i>
                                                 </button>
-                                                <input id="product-quality" class="quantity-input" type="text" value="@item.Count" aria-label="quantity" />
-                                                <button type="button" class="increase" aria-label="add">
+                                                <input class="quantity-input" type="text" value="@item.Count" aria-label="quantity" data-initial-count="@item.Count" data-product-id="@item.Id" />
+                                                <button class="increase" data-product-id="@item.Id" aria-label="add">
                                                     <i class="lastudioicon-i-add-2"></i>
                                                 </button>
                                             </div>
                                         </td>
 
-                                        <td id=@("product-total-price" + item.Id) class="product_total">£@(item.Price * item.Count)</td>
+
+                                        <td class="product_total text-center"></td>
                                     </tr>
-                                }    
-                               
-                                
+                                }
+
+
 
                                 <tr class="">
                                     <td colspan="6" class="actions">
@@ -171,6 +178,16 @@
                 <!-- Cart Collaterals End-->
             </div>
             <!-- Cart Wrapper End -->
+            <!-- Alert Wrapper Start -->
+            <div class="w-50 mx-auto mt-5 text-center" id="Alert">
+                <div class="alert alert-danger" role="alert">
+                    <i class="fa-solid fa-basket-shopping"></i> There are no products here! <a class="text-primary" asp-controller="Home" asp-action="index">
+                        Start to
+                        Shopping!
+                    </a>
+                </div>
+            </div>
+            <!-- Alert Wrapper End -->
         </div>
     </div>
     <!-- Cart End -->
@@ -247,11 +264,74 @@
 </main>
 
 @section Scripts{
-    <script>
 
+    <script>
+        // Function to recalculate cart totals
+        function recalculateCartTotal() {
+            var total = 0;
+            // Loop through all cart items to calculate the new total
+            $("tr.cart-item").each(function () {
+                var $this = $(this);
+                var price = parseFloat($this.find(".price-amount ins").text().replace('$', ''));
+                var count = parseInt($this.find('.quantity-input').val());  // Use the current value in input
+                total += (price * count);
+
+                var individualTotal = price * count;
+
+
+                // Update the individual total for each product
+                var individualTotalHtml = count +
+                    '<span style="font-size: 10px; font-weight:bolder;">X</span> £' +
+                    price.toFixed(2) +
+                    ' = £' +
+                    individualTotal.toFixed(2);
+
+                $this.find('.product_total').html(individualTotalHtml);
+
+                total += individualTotal;
+            });
+
+            // Update the totals in the HTML
+            $("th:contains('Subtotal')").next().find('span').text('$ ' + total.toFixed(2));
+            $("th:contains('Total')").next().find('strong').text('$ ' + total.toFixed(2));
+        }
+        function isCartEmpty() {
+            var cartCookie = decodeURIComponent(getCookie("basket")); // Decode URL
+            
+
+            var parsedCart = JSON.parse(cartCookie); // Parse to object
+
+            var isEmpty = !parsedCart || parsedCart.length === 0;
+
+            return isEmpty;
+        }
+
+
+        function getCookie(name) {
+            var value = "; " + document.cookie;
+            var parts = value.split("; " + name + "=");
+            if (parts.length === 2) return parts.pop().split(";").shift();
+        }
+
+        function updateCartDisplay() {
+            if (isCartEmpty()) {
+                $("#Alert").show();  // Show the alert
+                $(".cart-wrapper").hide();  // Hide the cart
+            } else {
+                $("#Alert").hide();  // Hide the alert
+                $(".cart-wrapper").show();  // Show the cart
+            }
+        }
+
+        // Run on page load
+        updateCartDisplay();
+        $(document).ready(function () {
+            recalculateCartTotal();
+        });
+
+        // Remove product from cart
         $(document).on('click', '#remove-from-cart', function () {
             var productId = $(this).parent().parent().parent().children().children().val();
-            console.log(productId)
 
             $.ajax({
                 type: "POST",
@@ -259,32 +339,95 @@
                 data: { productId: productId },
                 success: function () {
                     $("#" + productId + "tbody").remove();
+                    recalculateCartTotal();
+                    updateCartDisplay();
+
                 },
-                Error: function () {
-                    alert("Somthing Wrong");
+                error: function () {
+                    alert("Something went wrong");
                 }
             });
         });
 
-        $(document).on('change', '#product-quality', function () {
-            var productId = $(this).parent().parent().ch    ildren().children().val();
-            var count = $(this).val();
-            var price = $("#product_price").attr("data-id");
-            var totalPrice = price * count;
+        // When click increase/decrease buttons  updating quantity
+        $(document).on('click', '.increase, .decrease', function () {
+            var $productRow = $(this).closest('tr');
+            var productId = $productRow.find("input[type='hidden']").val();
+            var $quantityInput = $productRow.find('.quantity-input');
+            var currentQuantity = parseInt($quantityInput.val());
+            var updatedQuantity = $(this).hasClass('increase') ? currentQuantity + 1 : currentQuantity - 1;
 
-            $.ajax({
-                type: "POST",
-                url: "/Basket/ChangeProductQuality",
-                data: { productId: productId, count: count },
-                success: function () {
-                    $("#" + "product-total-price" + productId).html(totalPrice);
-                },
-                Error: function () {
-                    alert("Somthing Wrong");
-                }
-            });
+            if (updatedQuantity <= 0) {
+                $.ajax({
+                    type: "POST",
+                    url: "/Basket/DeleteProductBasket",
+                    data: { productId: productId },
+                    success: function () {
+                        $productRow.remove();
+                        recalculateCartTotal();
+                        updateCartDisplay();
 
+                    },
+                    error: function () {
+                        alert("Something went wrong while deleting the product.");
+                    }
+                });
+                return;
+            } else {
+                $.ajax({
+                    type: "POST",
+                    url: "/Basket/UpdateBasketQuantity",
+                    data: { productId: productId, updatedQuantity: updatedQuantity },
+                    success: function () {
+                        $quantityInput.val(updatedQuantity);
+                        recalculateCartTotal();
+                        updateCartDisplay();
 
+                    },
+                    error: function () {
+                        alert("Something went wrong");
+                    }
+                });
+            }
+        });
+
+        // When manual quantity with change event
+        $(document).on('change', '.quantity-input', function () {
+            var $productRow = $(this).closest('tr');
+            var productId = $productRow.find("input[type='hidden']").val();
+            var updatedQuantity = parseInt($(this).val()) || 0;
+
+            if (updatedQuantity <= 0) {
+                $.ajax({
+                    type: "POST",
+                    url: "/Basket/DeleteProductBasket",
+                    data: { productId: productId },
+                    success: function () {
+                        $productRow.remove();
+                        recalculateCartTotal();
+                        updateCartDisplay();
+
+                    },
+                    error: function () {
+                        alert("Something went wrong while deleting the product.");
+                    }
+                });
+                return;
+            } else {
+                $.ajax({
+                    type: "POST",
+                    url: "/Basket/UpdateBasketQuantity",
+                    data: { productId: productId, updatedQuantity: updatedQuantity },
+                    success: function () {
+                        recalculateCartTotal();
+                        updateCartDisplay();
+
+                    },
+                    error: function () {
+                        alert("Something went wrong");
+                    }
+                });
+            }
         });
     </script>
 }
