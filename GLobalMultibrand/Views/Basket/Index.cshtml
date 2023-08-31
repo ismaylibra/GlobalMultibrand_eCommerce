@@ -3,9 +3,19 @@
     var basket = Model;
 
     decimal totalPrice = 0;
+
     foreach (var product in basket)
     {
+        if(product.DiscountPrice>0)
+        {
+         var finalPrice = product.Price - product.DiscountPrice;
+        totalPrice += (decimal)finalPrice * product.Count;
+
+        }
+        else{
+
         totalPrice += product.Price * product.Count;
+        }
 
     }
 }

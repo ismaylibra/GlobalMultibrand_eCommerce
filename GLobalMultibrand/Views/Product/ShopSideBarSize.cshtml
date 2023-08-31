@@ -1,0 +1,232 @@
+﻿@model ShopSideBarSizeViewModel
+@{
+    var products = Model.Products;
+    var sizes = Model.Sizes;
+    decimal finalPrice = 0;
+    foreach (var item in products)
+    {
+        if (item.DiscountPrice > 0)
+        {
+            finalPrice = item.Price - (decimal)item.DiscountPrice;
+        }
+        else
+        {
+            finalPrice = item.Price;
+        }
+    }
+}
+<main>
+    <!-- Breadcrumb Start -->
+    <div class="breadcrumb-section">
+        <div class="container-fluid custom-containeAr">
+            <div class="breadcrumb-wrapper text-center">
+                <h2 class="breadcrumb-wrapper__title">Shop</h2>
+                <ul class="breadcrumb-wrapper__items justify-content-center">
+                    <li><a href="index.html">Home</a></li>
+                    <li><span>Shop</span></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- Breadcrumb End -->
+    <!-- Shop Start -->
+    <div class="shop-section section-padding-2">
+        <div class="container-fluid custom-container">
+            <!-- Shop Wrapper Start -->
+            <div class="shop-wrapper">
+                <div class="row gy-5">
+                    <div class="col-lg-12">
+                        <!-- Shop Filter Start -->
+                        <div class="shop-filter">
+                            <!-- Shop Filter Default Start -->
+                            <div class="shop-filter-default justify-content-between align-items-center">
+                                <!-- Shop Filter Count Start -->
+                                <div class="shop-filter-count d-none d-sm-block">
+                                    Showing 1–12 of 90 results
+                                </div>
+                                <!-- Shop Filter Count End -->
+                                <!-- Shop Filter Sort By Start -->
+                                <div class="shop-filter-sort-by">
+                                    <div class="shop-filter-sort-by__label">
+                                        <span>Sort by Default</span>
+                                        <i class="lastudioicon-down-arrow"></i>
+                                    </div>
+                                    <ul class="shop-filter-sort-by__dropdown">
+                                        <li class="active">
+                                            <a href="#">Sort by Default</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">Sort by Popularity</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">Sort by Rated</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">Sort by Latest</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                Sort by Price:
+                                                <i class="lastudioicon-arrow-up"></i>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                Sort by Price:
+                                                <i class="lastudioicon-arrow-down"></i>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <!-- Shop Filter Sort By End -->
+                            </div>
+                            <!-- Shop Filter Default End -->
+                        </div>
+                        <!-- Shop Filter End -->
+
+                        <div class="row">
+                            @foreach (var size in sizes)
+                            {
+                                @foreach (var product in size.ProductSizes)
+                                {
+
+                                    <div class="col-lg-3 col-md-4 col-sm-6">
+                                        <!-- Single product Start -->
+                                        <div class="single-product js-scroll ShortFadeInUp">
+                                            <div class="single-product__thumbnail">
+
+                                                <div class="single-product__thumbnail--holder">
+                                                    <a href="product-single.html">
+                                                        <img src="~/assets/images/product/@product.Product.ImageUrl" alt="Product" width="252" height="272" />
+                                                    </a>
+                                                </div>
+                                                <div class="single-product__thumbnail--meta-2">
+                                                    <a href="#" data-bs-tooltip="tooltip" data-bs-placement="top" data-bs-title="Add to cart" aria-label="Add to cart" data-bs-custom-class="p-meta-tooltip">
+                                                        <i class="lastudioicon-shopping-cart-3"></i>
+                                                    </a>
+                                                    <a href="#" data-bs-tooltip="tooltip" data-bs-placement="top" data-bs-title="Add to compare" aria-label="Add to compare" data-bs-custom-class="p-meta-tooltip">
+                                                        <i class="lastudioicon-ic_compare_arrows_24px"></i>
+                                                    </a>
+                                                    <button type="button" data-bs-tooltip="tooltip" data-bs-placement="top" data-bs-title="Quickview" data-bs-custom-class="p-meta-tooltip" data-bs-toggle="modal" data-bs-target="#quickView" aria-label="quickView">
+                                                        <i class="lastudioicon-search-zoom-in"></i>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                            <div class="single-product__info text-center">
+                                                <div class="single-product__info--tags">
+                                                    <a href="#">Fashion</a>
+                                                </div>
+                                                <h3 class="single-product__info--title">
+                                                    <a href="product-single.html">@product.Product.ProductName</a>
+                                                </h3>
+                                                <div class="single-product__info--price">
+                                                    <ins>$@finalPrice</ins>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- Single product End -->
+                                    </div>
+                                }
+                            }
+
+
+                        </div>
+
+                        <!-- Pagination Start -->
+                        <div class="paginations">
+                            <ul class="paginations-list">
+                                <li>
+                                    <a href="#" aria-label="arrow left">
+                                        <i class="lastudioicon-arrow-left"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">1</a>
+                                </li>
+                                <li>
+                                    <a class="active" href="#">2</a>
+                                </li>
+                                <li>
+                                    <a href="#">3</a>
+                                </li>
+                                <li>
+                                    <a href="#">4</a>
+                                </li>
+                                <li>
+                                    <a href="#">...</a>
+                                </li>
+                                <li>
+                                    <a href="#">10</a>
+                                </li>
+                                <li>
+                                    <a href="#" aria-label="arrow right">
+                                        <i class="lastudioicon-arrow-right"></i>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                        <!-- Pagination End -->
+                    </div>
+
+                </div>
+            </div>
+            <!-- Shop Wrapper End -->
+        </div>
+    </div>
+    <!-- Shop End -->
+    <!-- Newsletter Start -->
+    <div class="newsletter-section-2">
+        <div class="newsletter-left" style="
+                        background-image: url(assets/images/newsletter-bg-1.jpg);
+                    ">
+            <div class="newsletter-social">
+                <h4 class="newsletter-social__label">Follow us on</h4>
+                <ul class="newsletter-social__list">
+                    <li>
+                        <a href="#" aria-label="facebook">
+                            <i class="lastudioicon-b-facebook"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" aria-label="twitter">
+                            <i class="lastudioicon-b-twitter"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" aria-label="instagram">
+                            <i class="lastudioicon-b-instagram"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" aria-label="vimeo">
+                            <i class="lastudioicon-b-vimeo"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" aria-label="envato">
+                            <i class="lastudioicon-envato"></i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="newsletter-right" style="
+                        background-image: url(assets/images/newsletter-bg-2.jpg);
+                    ">
+            <!-- Newsletter Wrapper Start -->
+            <div class="newsletter-wrapper newsletter-wrapper--2 text-center">
+                <h4 class="newsletter-wrapper__title">
+                    10% off when you sign up
+                </h4>
+                <form action="#">
+                    <div class="newsletter-form-style-1 newsletter-form-style-1--2">
+                        <input type="text" placeholder="Enter your email address..." />
+                        <button type="submit">Subscribe</button>
+                    </div>
+                </form>
+            </div>
+            <!-- Newsletter Wrapper End -->
+        </div>
+    </div>
+    <!-- Newsletter End -->
+</main>

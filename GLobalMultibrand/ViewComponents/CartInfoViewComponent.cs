@@ -50,5 +50,7 @@ namespace GLobalMultibrand.ViewComponents
             }
             return View(model);
         }
+
+       
     }
 }
