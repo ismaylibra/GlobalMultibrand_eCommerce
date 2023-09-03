@@ -266,7 +266,7 @@
                                                         ></i></a>
                                             </div>
                                             <div class="single-product__thumbnail--holder">
-                                                <a href="product-single.html">
+                                                <a asp-controller="product" asp-action="details" asp-route-id="@product.Id">
                                                     <img src="~/assets/images/product/@product.ImageUrl" alt="Product" />
                                                 </a>
                                             </div>
@@ -284,10 +284,10 @@
                                         </div>
                                         <div class="single-product__info text-center">
                                             <div class="single-product__info--tags">
-                                                <a href="product-single.html">Fashion</a>
+                                                <a asp-controller="product" asp-action="details" asp-route-id="@product.Id">Fashion</a>
                                             </div>
                                             <h3 class="single-product__info--title">
-                                                <a href="#">@product.ProductName</a>
+                                                <a asp-controller="product" asp-action="details" asp-route-id="@product.Id">@product.ProductName</a>
                                             </h3>
                                             <div class="single-product__info--price">
                                                 <ins>$@product.Price</ins>

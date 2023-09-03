@@ -39,5 +39,8 @@ namespace GLobalMultibrand.Controllers
 
             return View(homeVM);
         }
+
+       
+
     }
 }

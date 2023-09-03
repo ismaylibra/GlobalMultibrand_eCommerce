@@ -21,12 +21,29 @@ namespace GLobalMultibrand.Controllers
             var products = await _dbContext.Products
                 .Where(p => !p.IsDeleted)
                 .Include(p => p.ProductColors).ThenInclude(p => p.Color)
-                //.Include(p => p.CategoryProducts).ThenInclude(p => p.Category)
                 .Include(p => p.ProductImages)
                 .Include(p => p.Brand)
                 .ToListAsync();
 
             return View(products);
+        }
+        public async Task<IActionResult> Details(int? id)
+        {
+            if (id is null) return BadRequest();
+            var product = await _dbContext.Products
+                .Where(p => p.Id == id).
+                Include(p => p.ProductImages)
+               .Include(p => p.ProductColors).ThenInclude(p => p.Color)
+                //.Include(p => p.CategoryProducts).ThenInclude(p => p.Category)
+                .FirstOrDefaultAsync();
+
+
+
+            if (product is null) return NotFound();
+
+            if (product.Id != id) return NotFound();
+
+            return View(product);
         }
         public async Task<IActionResult> ShopSideBarColor(int? id)
         {

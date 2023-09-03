@@ -1,0 +1,68 @@
+﻿@model List<Product>
+@{
+    var products = Model;
+    decimal finalPrice = 0;
+    foreach (var item in products)
+    {
+        if (item.DiscountPrice > 0)
+        {
+            finalPrice = (decimal)item.Price - (decimal)item.DiscountPrice;
+        }
+        else
+        {
+            finalPrice = item.Price;
+        }
+    }
+   
+}
+<div class="tab-pane fade show active" id="allProducts">
+    <!-- New Arrival Wrapper Start -->
+    <div class="new-arrival-wrapper-2">
+        <div class="row g-3">
+            @foreach (var product in products)
+            {
+
+                <div class="col-lg-3 col-md-4">
+                    <!-- Single product Start -->
+                    <div class="single-product js-scroll ShortFadeInUp">
+                        <div class="single-product__thumbnail">
+                            <div class="single-product__thumbnail--meta-3">
+                                <a href="#" data-bs-tooltip="tooltip" data-bs-placement="top" data-bs-title="Add to wishlist" data-bs-custom-class="p-meta-tooltip">
+                                    <i class="lastudioicon-heart-2"></i>
+                                </a>
+                            </div>
+                            <div class="single-product__thumbnail--holder">
+                                <a asp-controller="product" asp-action="details" asp-route-id="@product.Id">
+                                    <img src="~/assets/images/product/@product.ImageUrl" alt="Product" />
+                                </a>
+                            </div>
+                            <div class="single-product__thumbnail--meta-2">
+                                <button class="add-product-to-cart"><i class="lastudioicon-shopping-cart-3" data-id="@product.Id"></i></button>
+                                <a href="#" data-bs-tooltip="tooltip" data-bs-placement="top" data-bs-title="Add to compare" data-bs-custom-class="p-meta-tooltip">
+                                    <i class="lastudioicon-ic_compare_arrows_24px"></i>
+                                </a>
+                                <button data-bs-tooltip="tooltip" data-bs-placement="top" data-bs-title="Quickview" data-bs-custom-class="p-meta-tooltip" data-bs-toggle="modal" data-bs-target="#quickView">
+                                    <i class="lastudioicon-search-zoom-in"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="single-product__info text-center">
+                            <div class="single-product__info--tags">
+                                <a asp-controller="product" asp-action="details" asp-route-id="@product.Id">Fashion</a>
+                            </div>
+                            <h3 class="single-product__info--title">
+                                <a asp-controller="product" asp-action="details" asp-route-id="@product.Id">@product.ProductName</a>
+                            </h3>
+                            <div class="single-product__info--price">
+                                <ins>$@finalPrice</ins>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Single product End -->
+                </div>
+            }
+
+        </div>
+    </div>
+    <!-- New Arrival Wrapper End -->
+</div>
