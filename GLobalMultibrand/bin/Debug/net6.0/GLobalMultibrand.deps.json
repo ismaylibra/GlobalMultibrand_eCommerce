@@ -18,6 +18,14 @@
         },
         "runtime": {
           "GLobalMultibrand.dll": {}
+        },
+        "resources": {
+          "az/GLobalMultibrand.resources.dll": {
+            "locale": "az"
+          },
+          "en-US/GLobalMultibrand.resources.dll": {
+            "locale": "en-US"
+          }
         }
       },
       "Humanizer/2.14.1": {

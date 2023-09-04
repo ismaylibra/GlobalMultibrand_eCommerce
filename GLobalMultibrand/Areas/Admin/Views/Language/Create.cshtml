@@ -1,0 +1,38 @@
+﻿@model LanguageCreateViewModel
+
+
+<div class="row col-lg-12">
+    <div class="col-md-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Adding Language</h4>
+
+                <form class="forms-sample" method="post" asp-action="create" enctype="multipart/form-data" en>
+                    <div asp-validation-summary="All" class="text-danger"></div>
+
+                    <div class="form-group">
+                        <label asp-for="Name">Language Name</label>
+                        <input asp-for="Name" class="form-control" placeholder="Please,Enter the Name Of The Language">
+                        <span asp-validation-for="Name" class="text-danger"></span>
+
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="IsoCode">Iso Code</label>
+                        <input asp-for="IsoCode" class="form-control" placeholder="Please,Enter the Iso Code">
+                        <span asp-validation-for="IsoCode" class="text-danger"></span>
+
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Image">Image</label>
+                        <input asp-for="Image" class="form-control" placeholder="Image">
+                        <span asp-validation-for="Image" class="text-danger"></span>
+
+                    </div>
+
+                    <button type="submit" class="btn btn-primary mr-2">Submit</button>
+                    <button class="btn btn-light" asp-action="index">Cancel</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

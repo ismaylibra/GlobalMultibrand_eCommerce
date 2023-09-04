@@ -515,3 +515,10 @@ C:\Users\ASUS\Desktop\ASP.NET\GMB\GLobalMultibrand\obj\Debug\net6.0\GLobalMultib
 C:\Users\ASUS\Desktop\ASP.NET\GMB\GLobalMultibrand\obj\Debug\net6.0\GLobalMultibrand.genruntimeconfig.cache
 C:\Users\ASUS\Desktop\ASP.NET\GMB\GLobalMultibrand\obj\Debug\net6.0\ref\GLobalMultibrand.dll
 C:\Users\ASUS\Desktop\ASP.NET\GMB\GLobalMultibrand\obj\Debug\net6.0\GLobalMultibrand.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\ASUS\Desktop\ASP.NET\GMB\GLobalMultibrand\bin\Debug\net6.0\az\GLobalMultibrand.resources.dll
+C:\Users\ASUS\Desktop\ASP.NET\GMB\GLobalMultibrand\bin\Debug\net6.0\en-US\GLobalMultibrand.resources.dll
+C:\Users\ASUS\Desktop\ASP.NET\GMB\GLobalMultibrand\obj\Debug\net6.0\GLobalMultibrand.Resources.SharedResource.az.resources
+C:\Users\ASUS\Desktop\ASP.NET\GMB\GLobalMultibrand\obj\Debug\net6.0\GLobalMultibrand.Resources.SharedResource.en-US.resources
+C:\Users\ASUS\Desktop\ASP.NET\GMB\GLobalMultibrand\obj\Debug\net6.0\GLobalMultibrand.csproj.GenerateResource.cache
+C:\Users\ASUS\Desktop\ASP.NET\GMB\GLobalMultibrand\obj\Debug\net6.0\az\GLobalMultibrand.resources.dll
+C:\Users\ASUS\Desktop\ASP.NET\GMB\GLobalMultibrand\obj\Debug\net6.0\en-US\GLobalMultibrand.resources.dll

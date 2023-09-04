@@ -24,6 +24,8 @@ namespace GMB.DAL.DAL
         public DbSet<ProductImage> ProductImages { get; set; }
         public DbSet<ProductColor> ProductColors { get; set; }
         public DbSet<ProductSize> ProductSizes { get; set; }
+        public DbSet<Language> Languages { get; set; }
+
 
     }
 }

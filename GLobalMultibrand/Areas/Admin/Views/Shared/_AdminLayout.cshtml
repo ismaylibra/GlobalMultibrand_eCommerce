@@ -109,9 +109,9 @@
                         <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" id="profileDropdown">
                             <img src="~/admin/images/faces/face5.jpg" alt="profile" />
 
-                            @if(fullname is  null)
+                            @if (fullname is null)
                             {
-                            <span class="nav-profile-name">@User.Identity.Name</span>
+                                <span class="nav-profile-name">@User.Identity.Name</span>
 
 
                             }
@@ -145,8 +145,7 @@
                 <ul class="nav">
                     <li class="nav-item">
                         <a class="nav-link" asp-controller="dashboard" asp-action="index">
-                            <i class="mdi mdi-home menu-icon"></i>
-                            <span class="menu-title">Dashboard</span>
+                            <i class="fa-solid fa-chart-line"></i>    <span style="padding-left:1.5rem;" class="menu-title">Dashboard</span>
                         </a>
                     </li>
                     <li class="nav-item">
@@ -158,6 +157,7 @@
                         <div class="collapse" id="ui-basic">
                             <ul class="nav flex-column sub-menu">
                                 <li class="nav-item"> <a class="nav-link" asp-controller="slider" asp-action="index">Slider Images</a></li>
+                                <li class="nav-item"> <a class="nav-link" asp-controller="language" asp-action="index">Languages</a></li>
 
 
                             </ul>

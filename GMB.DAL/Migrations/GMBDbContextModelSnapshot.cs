@@ -39,7 +39,7 @@ namespace GMB.DAL.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Brands", (string)null);
+                    b.ToTable("Brands");
                 });
 
             modelBuilder.Entity("GMB.Core.Entities.Color", b =>
@@ -59,7 +59,35 @@ namespace GMB.DAL.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Colors", (string)null);
+                    b.ToTable("Colors");
+                });
+
+            modelBuilder.Entity("GMB.Core.Entities.Language", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("ImageUrl")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("IsoCode")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Languages");
                 });
 
             modelBuilder.Entity("GMB.Core.Entities.Product", b =>
@@ -101,7 +129,7 @@ namespace GMB.DAL.Migrations
 
                     b.HasIndex("BrandId");
 
-                    b.ToTable("Products", (string)null);
+                    b.ToTable("Products");
                 });
 
             modelBuilder.Entity("GMB.Core.Entities.ProductColor", b =>
@@ -127,7 +155,7 @@ namespace GMB.DAL.Migrations
 
                     b.HasIndex("ProductId");
 
-                    b.ToTable("ProductColors", (string)null);
+                    b.ToTable("ProductColors");
                 });
 
             modelBuilder.Entity("GMB.Core.Entities.ProductImage", b =>
@@ -152,7 +180,7 @@ namespace GMB.DAL.Migrations
 
                     b.HasIndex("ProductId");
 
-                    b.ToTable("ProductImages", (string)null);
+                    b.ToTable("ProductImages");
                 });
 
             modelBuilder.Entity("GMB.Core.Entities.ProductSize", b =>
@@ -178,7 +206,7 @@ namespace GMB.DAL.Migrations
 
                     b.HasIndex("SizeId");
 
-                    b.ToTable("ProductSizes", (string)null);
+                    b.ToTable("ProductSizes");
                 });
 
             modelBuilder.Entity("GMB.Core.Entities.Size", b =>
@@ -198,7 +226,7 @@ namespace GMB.DAL.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Sizes", (string)null);
+                    b.ToTable("Sizes");
                 });
 
             modelBuilder.Entity("GMB.Core.Entities.Slider", b =>
@@ -230,7 +258,7 @@ namespace GMB.DAL.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Sliders", (string)null);
+                    b.ToTable("Sliders");
                 });
 
             modelBuilder.Entity("GMB.Core.IdentityModels.User", b =>
@@ -481,7 +509,7 @@ namespace GMB.DAL.Migrations
             modelBuilder.Entity("GMB.Core.Entities.ProductSize", b =>
                 {
                     b.HasOne("GMB.Core.Entities.Product", "Product")
-                        .WithMany("ProductSize")
+                        .WithMany("ProductSizes")
                         .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -564,7 +592,7 @@ namespace GMB.DAL.Migrations
 
                     b.Navigation("ProductImages");
 
-                    b.Navigation("ProductSize");
+                    b.Navigation("ProductSizes");
                 });
 
             modelBuilder.Entity("GMB.Core.Entities.Size", b =>

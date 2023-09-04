@@ -1,3 +1,4 @@
+using GLobalMultibrand.Services;
 using GMB.Business.Helpers;
 using GMB.Core.IdentityModels;
 using GMB.DAL;
@@ -6,6 +7,7 @@ using GMB.DAL.Data;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Options;
 using System;
 
 namespace GLobalMultibrand
@@ -18,7 +20,9 @@ namespace GLobalMultibrand
 
 
             // Add services to the container.
-            builder.Services.AddControllersWithViews();
+
+            builder.Services.AddLanguageService();
+
             builder.Services.AddDbContext<GMBDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
             builder.Services.AddIdentity<User, IdentityRole>(options =>
 
@@ -54,11 +58,16 @@ namespace GLobalMultibrand
             Constants.SliderPath = Path.Combine(Constants.RootPath, "assets", "images", "slider");
             Constants.ProductImagePath = Path.Combine(Constants.RootPath, "assets", "images", "product");
             Constants.ProductMainImagePath = Path.Combine(Constants.RootPath, "assets", "images", "product");
+            Constants.LanguageFlagPath = Path.Combine(Constants.RootPath, "assets", "images", "flags");
 
 
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
+
+            var locOptions = app.Services.GetService<IOptions<RequestLocalizationOptions>>();
+
+            app.UseRequestLocalization(locOptions.Value);
 
             using (var scope = app.Services.CreateScope())
             {

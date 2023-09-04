@@ -14,6 +14,8 @@ namespace GMB.Business.Helpers
         public static string BlogPath;
         public static string ProductImagePath;
         public static string ProductMainImagePath;
+        public static string LanguageFlagPath;
+
         //public static string AboutPath;
         //public static string UserImagePath;
         //public static string AdvertisementBannerPath;

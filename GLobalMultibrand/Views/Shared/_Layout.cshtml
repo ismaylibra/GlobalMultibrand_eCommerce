@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿@using GLobalMultibrand.Services
+@inject LanguageService languageService;
+<!DOCTYPE html>
 <html class="no-js" lang="en">
 
 
@@ -14,7 +16,6 @@
     <link rel="shortcut icon" type="image/x-icon" href="~/assets/images/favicon.png" />
 
     <!-- CSS (Font, Vendor, Icon, Plugins & Style CSS files) -->
-
     <!-- Font CSS -->
     <link rel="preconnect" href="https://fonts.googleapis.com/" />
     <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin />
@@ -33,7 +34,32 @@
 
     <!-- Style CSS -->
     <link rel="stylesheet" href="~/assets/css/style.css" />
+    <style>
+        .currencyBtn{
+            border:none !important;
+            background-color:transparent !important;
+        }
+        .currencyBtn:hover{
+            color:#d68d67 !important;
+        }
+
+        .currencyBtn:focus{
+            color:#bd6233 !important;
+        }
+
+          .languageBtn{
+            border:none !important;
+            background-color:transparent !important;
+        }
+        .languageBtn:hover{
+            color:#d68d67 !important;
+        }
+         .languageBtn:focus{
+            color:#bd6233 !important;
+        }
+    </style>
 </head>
+
 
 
 <body>
@@ -68,16 +94,48 @@
                     <div class="header-2__top--right">
                         <ul class="header-2__top--items">
                             <li>
-                                <a href="login-register.html">
-                                    <i class="lastudioicon-single-01-1"></i>
-                                    <span>Login</span>
-                                </a>
+                                <div class="btn-group">
+                                    <button class="btn btn-secondary btn-sm dropdown-toggle currencyBtn" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                       <i class="fa-solid fa-coins"></i>  Currency
+                                    </button>
+                                    <ul class="dropdown-menu">
+                                        <li>
+                                            
+                                             <i class="fa-solid fa-manat-sign"></i>    AZN
+                                            
+                                        </li>
+                                         <li>
+
+                                            <i class="fa-solid fa-dollar-sign"></i>    USD
+                                            
+                                        </li> <li>
+                                            
+                                                <i class="fa-solid fa-euro-sign"></i>    EURO
+                                            
+                                        </li>
+                                    </ul>
+                                </div>
                             </li>
                             <li>
-                                <a href="term-of-use.html">
-                                    <i class="lastudioicon-b-meeting-2"></i>
-                                    <span>Help Center</span>
-                                </a>
+                                <div class="btn-group">
+                                    <button class="btn btn-secondary btn-sm dropdown-toggle languageBtn" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                        <i class="fa-solid fa-globe"></i> Language
+                                    </button>
+                                    <ul class="dropdown-menu">
+                                        <li>
+                                            <a class="dropdown-item" asp-controller="language" asp-action="changeLanguage" asp-route-culture="en-US">
+                                                <img src="~/assets/images/flags/1f1ec-1f1e7.png" style="max-width: 20%;" />
+                                                ENG
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a class="dropdown-item" asp-controller="language" asp-action="changeLanguage" asp-route-culture="az">
+                                                <img src="~/assets/images/flags/1f1e6-1f1ff.png" style="max-width: 20%;" />
+                                                AZE
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
                             </li>
                         </ul>
                     </div>
@@ -85,7 +143,6 @@
             </div>
         </div>
         <!-- Header Top End -->
-
         <!-- Header Main Start -->
         <div class="header__main header-shadow d-flex align-items-center">
             <div class="container-fluid custom-container">
@@ -106,17 +163,8 @@
                                 <!-- Menu Item List Start -->
                                 <ul class="menu-items-list menu-items-list--dark d-flex justify-content-center">
                                     <li class="position-static">
-                                        <a class="active" href="#">Demos <i class="lastudioicon-down-arrow"></i></a>
-                                        <ul class="mega-menu mega-menus-list">
-                                            <li><a href="index.html">01 Fashion Classic</a></li>
-                                            <li><a href="index-2.html">02 Fashion Classic</a></li>
-                                            <li><a href="index-3.html">03 Fashion Modern</a></li>
-                                            <li><a href="index-4.html">04 Fashion Trend</a></li>
-                                            <li><a href="index-5.html">05 Fashion Trend 02</a></li>
-                                            <li><a href="index-6.html">06 Fashion Modern 02</a></li>
-                                            <li><a href="index-7.html">07 Fashion Simple 01</a></li>
-                                            <li><a href="index-8.html">08 Fashion Simple 02</a></li>
-                                        </ul>
+                                        <a class="active" asp-controller="home" asp-action="index">@languageService.GetValue("home")</a>
+
                                     </li>
                                     <li>
                                         <a href="#">Pages <i class="lastudioicon-down-arrow"></i></a>
@@ -275,9 +323,7 @@
                                 </li>
                                 <li class="wishlist">
                                     <a href="wishlist.html">
-                                        <i
-                                        class="lastudioicon lastudioicon-heart-1"
-                                    ></i>
+                                        <i class="lastudioicon lastudioicon-heart-1"></i>
                                         <span class="badge">03</span>
                                     </a>
                                 </li>
@@ -288,9 +334,9 @@
                                 </li>
                             </ul>
                             <button class="toggle-icon d-none d-xl-block" data-bs-toggle="offcanvas" data-bs-target="#offcanvasSidebar">
-                                <span class="bar-icon"
-                                ><i class="lastudioicon-menu-8-1"></i
-                            ></span>
+                                <span class="bar-icon">
+                                    <i class="lastudioicon-menu-8-1"></i>
+                                </span>
                             </button>
                             <!-- Meta Item List Start -->
                         </div>
@@ -302,14 +348,11 @@
     </header>
 
     <!-- Header End -->
-
     <!-- Cart Sidebar Start -->
     <!-- Cart Offcanvas Start -->
     @await Component.InvokeAsync("CartInfo")
     <!-- Cart Offcanvas End -->
-
     <!-- Cart Sidebar End -->
-
     <!-- Search Start -->
     <div class="search-modal modal fade" id="SearchModal">
         <!-- Search Close Start -->
@@ -335,7 +378,6 @@
     </div>
 
     <!-- Search End -->
-
     <!-- Offcanvas Menu Start -->
     <div class="offcanvas offcanvas-end offcanvas-sidebar" tabindex="-1" id="offcanvasSidebar">
         <button type="button" class="offcanvas-sidebar__close" data-bs-dismiss="offcanvas">
@@ -353,7 +395,6 @@
                 </ul>
             </div>
             <!-- Off Canvas Sidebar Menu End -->
-
             <!-- Off Canvas Sidebar Banner Start -->
             <div class="offcanvas-sidebar__banner" style="
                 background-image: url(assets/images/shop-sidebar-banner.jpg);
@@ -363,21 +404,20 @@
                 <a href="#" class="banner-btn">Discover</a>
             </div>
             <!-- Off Canvas Sidebar Banner End -->
-
             <!-- Off Canvas Sidebar Info Start -->
             <div class="offcanvas-sidebar__info">
                 <ul class="offcanvas-info-list">
                     <li><a href="tel:+61225315600">(+612) 2531 5600</a></li>
                     <li><a href="mailto:info@exmple.com">info@exmple.com</a></li>
                     <li>
-                        <span
-                        >PO Box 1622 Colins Street West Victoria 8077
-                        Australia</span>
+                        <span>
+                            PO Box 1622 Colins Street West Victoria 8077
+                            Australia
+                        </span>
                     </li>
                 </ul>
             </div>
             <!-- Off Canvas Sidebar Info End -->
-
             <!-- Off Canvas Sidebar Social Start -->
             <div class="offcanvas-sidebar__social">
                 <ul class="offcanvas-social">
@@ -393,7 +433,6 @@
                 </ul>
             </div>
             <!-- Off Canvas Sidebar Social End -->
-
             <!-- Off Canvas Sidebar Social End -->
             <div class="offcanvas-sidebar__copyright">
                 <p>
@@ -410,7 +449,6 @@
     </div>
 
     <!-- Offcanvas Menu End -->
-
     <!-- Mobile Menu Start -->
     <div class="mobile-menu offcanvas offcanvas-start" tabindex="-1" id="mobileMenu">
         <!-- offcanvas-header Start -->
@@ -420,15 +458,15 @@
             </button>
         </div>
         <!-- offcanvas-header End -->
-
         <!-- offcanvas-body Start -->
         <div class="offcanvas-body">
             <nav class="navbar-mobile-menu">
                 <ul class="mobile-menu-items">
                     <li>
-                        <a href="#">Demos
-                            <span class="menu-expand"
-                            ><i class="lastudioicon-down-arrow"></i></span></a>
+                        <a href="#">
+                            Demos
+                            <span class="menu-expand"><i class="lastudioicon-down-arrow"></i></span>
+                        </a>
                         <ul class="mega-menu mega-menus-list">
                             <li><a href="index.html">01 Fashion Classic</a></li>
                             <li><a href="index-2.html">02 Fashion Classic</a></li>
@@ -461,9 +499,10 @@
                         </ul>
                     </li>
                     <li>
-                        <a href="#">Pages
-                            <span class="menu-expand"
-                            ><i class="lastudioicon-down-arrow"></i></span></a>
+                        <a href="#">
+                            Pages
+                            <span class="menu-expand"><i class="lastudioicon-down-arrow"></i></span>
+                        </a>
                         <ul class="sub-menu">
                             <li><a href="about.html">About us</a></li>
                             <li><a href="coming-soon.html">Coming Soon</a></li>
@@ -478,9 +517,10 @@
                         </ul>
                     </li>
                     <li>
-                        <a href="#">Shop
-                            <span class="menu-expand"
-                            ><i class="lastudioicon-down-arrow"></i></span></a>
+                        <a href="#">
+                            Shop
+                            <span class="menu-expand"><i class="lastudioicon-down-arrow"></i></span>
+                        </a>
                         <div class="mega-menu">
                             <div class="mega-menu-col">
                                 <h5 class="mega-menu-title">Shop Layout</h5>
@@ -560,9 +600,10 @@
                         </div>
                     </li>
                     <li>
-                        <a href="#">Collections
-                            <span class="menu-expand"
-                            ><i class="lastudioicon-down-arrow"></i></span></a>
+                        <a href="#">
+                            Collections
+                            <span class="menu-expand"><i class="lastudioicon-down-arrow"></i></span>
+                        </a>
                         <div class="mega-menu">
                             <div class="mega-menu__banner">
                                 <a href="#">
@@ -623,19 +664,19 @@
                                         </div>
                                         <ul class="mega-menu__social--social">
                                             <li>
-                                                <a href="#"><i
-                                                    class="lastudioicon-b-facebook"
-                                                ></i></a>
+                                                <a href="#">
+                                                    <i class="lastudioicon-b-facebook"></i>
+                                                </a>
                                             </li>
                                             <li>
-                                                <a href="#"><i
-                                                    class="lastudioicon-b-twitter"
-                                                ></i></a>
+                                                <a href="#">
+                                                    <i class="lastudioicon-b-twitter"></i>
+                                                </a>
                                             </li>
                                             <li>
-                                                <a href="#"><i
-                                                    class="lastudioicon-b-instagram"
-                                                ></i></a>
+                                                <a href="#">
+                                                    <i class="lastudioicon-b-instagram"></i>
+                                                </a>
                                             </li>
                                         </ul>
                                     </div>
@@ -644,9 +685,10 @@
                         </div>
                     </li>
                     <li>
-                        <a href="#">Blog
-                            <span class="menu-expand"
-                            ><i class="lastudioicon-down-arrow"></i></span></a>
+                        <a href="#">
+                            Blog
+                            <span class="menu-expand"><i class="lastudioicon-down-arrow"></i></span>
+                        </a>
                         <ul class="sub-menu">
                             <li><a href="#">Blog Right Sidebar</a></li>
                             <li><a href="#">Blog Left Sidebar</a></li>
@@ -662,7 +704,6 @@
     </div>
 
     <!-- Mobile Menu End -->
-
     <!-- Mobile Meta Start -->
     <div class="mobile-meta d-md-none">
         <ul class="mobile-meta-items">
@@ -695,7 +736,7 @@
     <!-- Mobile Meta End -->
 
     <main>
-            @RenderBody()
+        @RenderBody()
     </main>
 
     <!-- Footer Start -->
@@ -706,7 +747,7 @@
                 <div class="footer-col-1">
                     <!-- Footer About Start -->
                     <div class="footer-about text-xxl-start text-center mx-auto">
-                        <a class="logo justify-content-xxl-start justify-content-center" href="#"><img src="~/assets/images/gmb.black.svg"  style="height:59px;"style alt="Logo" /></a>
+                        <a class="logo justify-content-xxl-start justify-content-center" href="#"><img src="~/assets/images/gmb.black.svg" style="height:59px;" style alt="Logo" /></a>
                         <p>Come Shopping, You Deserve It</p>
                     </div>
                     <!-- Footer About End -->
@@ -776,7 +817,7 @@
                     </script>
 
                     <span> GlobalMultibrand </span>
-                                        <i class="fa-solid fa-minus" style="color: #5b5b5b;"></i>
+                    <i class="fa-solid fa-minus" style="color: #5b5b5b;"></i>
 
                     Powered by
                     <a href="https://hasthemes.com/">Ismayil Ibra</a>
@@ -903,7 +944,6 @@
     </div>
     <!-- Modal End -->
     <!-- Quick View End -->
-
     <!-- JS Vendor, Plugins & Activation Script Files -->
     <!-- Bootstrap JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.2/jquery.min.js" integrity="sha512-tWHlutFnuG0C6nQRlpvrEhE4QpkG1nn2MOUMWmUeRePl4e3Aki0VB6W1v3oLjFtd0hVOtRQ9PHpSfN6u6/QXkQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
